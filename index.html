@@ -34,31 +34,31 @@
             background-size: 24px 24px;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 15px;
+            padding: 20px;
             color: var(--text-main);
-            /* Rimosso overflow:hidden per permettere lo scroll naturale su mobile */
+            /* Modifica per Mobile: Permette scroll pagina intera */
             min-height: 100vh;
+            overflow-x: hidden; 
         }
 
-        /* --- LAYOUT GRID RESPONSIVE --- */
+        /* --- LAYOUT GRID BASE (Desktop) --- */
         .main-grid {
             display: grid;
-            /* Default Desktop: Sidebar + Map */
-            grid-template-columns: 350px 1fr; 
-            gap: 30px;
+            grid-template-columns: 380px 1fr;
+            gap: 40px;
+            height: 95vh;
             max-width: 1800px;
             margin: 0 auto;
-            height: 95vh;
         }
 
-        /* --- STILI GENERALI (Desktop Base) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             display: flex;
             flex-direction: column;
             gap: 20px;
             height: 100%;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-right: 10px;
         }
 
         .hero-card {
@@ -68,223 +68,190 @@
             padding: 20px;
             box-shadow: var(--shadow-3d);
         }
-        .hero-card h1 { margin: 0 0 10px 0; font-size: 1.4rem; color: #333; }
+        .hero-card h1 { margin: 0 0 10px 0; font-size: 1.5rem; color: #333; }
         .hero-card p { opacity: 0.8; margin: 0; font-size: 0.9rem; }
 
         .instruction-card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: var(--shadow-3d);
             border-bottom: 2px solid #ddd;
-            flex-grow: 1; /* Occupa spazio rimanente su desktop */
+            flex-grow: 1;
         }
 
-        .step-block { margin-bottom: 25px; border-bottom: 1px dashed #eee; padding-bottom: 15px; }
+        .step-block { margin-bottom: 30px; border-bottom: 1px dashed #eee; padding-bottom: 20px; }
         .step-block:last-child { border: none; padding-bottom: 0; }
         
-        .step-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-        .step-title { font-weight: 700; font-size: 1rem; color: #333; }
-        .timer-badge { background: #f4f4f4; color: #666; padding: 3px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+        .step-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .step-title { font-weight: 700; font-size: 1.1rem; color: #333; }
+        .timer-badge { background: #f4f4f4; color: #666; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
 
         .instruction-list { list-style: none; padding: 0; margin: 0; }
-        .instruction-list li { margin-bottom: 8px; font-size: 0.85rem; color: #555; padding-left: 15px; position: relative; }
+        .instruction-list li { margin-bottom: 8px; font-size: 0.9rem; color: #555; padding-left: 15px; position: relative; }
         .instruction-list li::before { content: '•'; position: absolute; left: 0; color: #2A9D8F; font-weight: bold; }
 
         /* Layers Styles */
         .layer-box {
             background: #fafafa;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             margin-top: 10px;
             border-left: 4px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .layer-title { font-weight: 600; font-size: 0.85rem; display: flex; justify-content: space-between; }
         .layer-a { border-color: var(--sticky-yellow); }
         .layer-b { border-color: var(--sticky-pink); }
         .layer-c { border-color: var(--sticky-blue); }
 
-        /* --- MAPPA --- */
+        /* --- MAP CONTAINER --- */
         .map-container {
             padding: 10px;
-            overflow: auto; /* Scroll barre desktop */
+            overflow: auto;
             position: relative;
-            /* Smooth scroll su iOS */
-            -webkit-overflow-scrolling: touch; 
         }
 
         .journey-grid {
             display: grid;
-            /* Colonne fisse per evitare schiacciamento */
-            grid-template-columns: repeat(5, 220px); 
-            gap: 25px;
-            padding: 10px;
-            padding-bottom: 80px;
-            width: max-content; /* Forza la larghezza in base al contenuto */
+            grid-template-columns: repeat(5, 240px);
+            gap: 40px;
+            padding: 20px;
+            padding-bottom: 100px;
         }
 
-        /* --- STILI HEADERS & FRECCE --- */
+        /* --- STILI HEADERS --- */
         .column-header {
             background-color: var(--header-yellow);
             color: #333;
             font-weight: 700;
-            font-size: 1rem;
-            padding: 15px 10px;
+            font-size: 1.1rem;
+            padding: 20px 10px;
             text-align: center;
             border-radius: 4px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             position: relative;
             border-bottom: 4px solid rgba(0,0,0,0.15);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(255, 207, 75, 0.3), 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
 
-        /* Freccia Desktop/Base */
+        /* Frecce desktop */
         .journey-grid > div:not(:last-child) .column-header::after {
-            content: '';
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 35px;
-            height: 4px;
-            background-color: #FFD54F;
-            z-index: -1;
+            content: ''; position: absolute; right: -45px; top: 50%; transform: translateY(-50%); width: 50px; height: 4px; background-color: #FFD54F; z-index: -1; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .journey-grid > div:not(:last-child) .column-header::before {
-            content: '';
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-left: 10px solid #FFD54F;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
+            content: ''; position: absolute; right: -55px; top: 50%; transform: translateY(-50%); border-left: 15px solid #FFD54F; border-top: 10px solid transparent; border-bottom: 10px solid transparent; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
         /* --- STICKY NOTES --- */
         .sticky {
-            height: 120px;
-            padding: 15px;
+            height: 140px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 0.85rem;
-            line-height: 1.3;
+            font-size: 0.95rem;
+            line-height: 1.4;
             font-weight: 500;
             border-radius: 2px;
             position: relative;
+            transition: transform 0.2s;
             cursor: pointer;
             margin-bottom: 15px;
             border-bottom: var(--border-thickness);
             box-shadow: var(--shadow-3d);
         }
 
-        .sticky::before {
-            content: ''; position: absolute; bottom: 8px; left: 8px; width: 15px; height: 5px; background: rgba(0,0,0,0.1); border-radius: 4px;
-        }
-
-        /* Colori */
+        .sticky::before { content: ''; position: absolute; bottom: 10px; left: 10px; width: 20px; height: 6px; background: rgba(0,0,0,0.1); border-radius: 4px; }
         .s-gray { background: var(--sticky-gray); color: #444; }
         .s-yellow { background: var(--sticky-yellow); color: #444; transform: rotate(-1deg); }
         .s-orange { background: var(--sticky-pink); color: white; transform: rotate(1deg); }
         .s-blue { background: var(--sticky-blue); transform: rotate(-0.5deg); }
-        
-        .locked::after { content: '🔒'; position: absolute; top: 5px; right: 5px; font-size: 14px; opacity: 0.3; filter: grayscale(100%); }
-        .row-label { font-size: 0.65rem; color: #999; text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 20px; margin-bottom: 5px; font-weight: 700; }
-        .placeholder { opacity: 0.3; font-style: italic; font-size: 0.75rem; pointer-events: none; }
+        .locked::after { content: '🔒'; position: absolute; top: 5px; right: 8px; font-size: 16px; opacity: 0.3; filter: grayscale(100%); }
+        .row-label { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-top: 25px; margin-bottom: 8px; font-weight: 700; }
+        .placeholder { opacity: 0.3; font-style: italic; font-size: 0.8rem; pointer-events: none; }
 
         /* --- PINS --- */
-        .pin-container {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(10deg); z-index: 20; width: 15px; height: 30px; filter: drop-shadow(1px 3px 2px rgba(0,0,0,0.4));
-        }
-        .pin-needle { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 3px; height: 20px; background: silver; z-index: 1; }
-        .pin-head { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; border-radius: 50%; z-index: 2; box-shadow: inset 0 -2px 3px rgba(0,0,0,0.3); }
+        .pin-container { position: absolute; top: -20px; left: 50%; transform: translateX(-50%) rotate(10deg); z-index: 20; width: 20px; height: 40px; filter: drop-shadow(2px 5px 3px rgba(0,0,0,0.4)); transition: transform 0.2s; }
+        .pin-needle { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 25px; background: linear-gradient(90deg, #BDC3C7, #ECF0F1, #95A5A6); border-radius: 0 0 2px 2px; z-index: 1; }
+        .pin-head { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 24px; height: 24px; border-radius: 50%; z-index: 2; background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 30%); box-shadow: inset 0 -3px 5px rgba(0,0,0,0.3); }
         .pin-blue .pin-head { background-color: var(--pin-blue-color); }
         .pin-red .pin-head { background-color: var(--pin-red-color); }
         .pin-yellow .pin-head { background-color: var(--pin-yellow-color); }
-        .pin-hole-shadow { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 6px; height: 2px; background: rgba(0,0,0,0.5); border-radius: 50%; z-index: 0; }
-        
-        .pin-legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .pin-preview-box { width: 25px; height: 25px; position: relative; margin-right: 5px;}
+        .pin-hole-shadow { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 8px; height: 3px; background: rgba(0,0,0,0.5); border-radius: 50%; z-index: 0; }
+        .pin-legend-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .pin-preview-box { width: 30px; height: 30px; position: relative; margin-right: 5px;}
 
-        /* Mobile Swipe Hint */
-        .swipe-hint {
-            display: none; /* Nascosto su desktop */
-            text-align: center;
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 10px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        /* Indicatore Swipe solo Mobile */
+        .mobile-hint { display: none; text-align: center; color: #666; font-size: 0.8rem; margin-bottom: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         /* =========================================
-           MEDIA QUERIES (La magia per il Mobile)
+           VERSIONE MOBILE (RESPONSIVE)
            ========================================= */
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             body {
                 padding: 10px;
-                overflow: auto; /* Abilita scroll verticale della pagina */
+                overflow: auto; /* Abilita lo scroll verticale della pagina */
             }
 
             .main-grid {
-                display: block; /* Sblocca la griglia, diventa tutto verticale */
+                display: flex;
+                flex-direction: column; /* Impila verticale: Sidebar sopra, Mappa sotto */
                 height: auto;
+                gap: 20px;
             }
 
-            /* Sidebar sopra */
             .sidebar {
                 height: auto;
                 overflow: visible;
                 padding-right: 0;
-                margin-bottom: 20px;
             }
 
-            /* Mappa sotto */
             .map-container {
-                /* Crea una finestra di scorrimento orizzontale */
-                overflow-x: auto; 
+                /* Crea lo scroll orizzontale per la mappa */
+                overflow-x: auto;
                 width: 100%;
-                /* Snap per fermarsi esattamente sulle card quando scorri */
-                scroll-snap-type: x mandatory; 
-                padding-bottom: 20px;
-                background: white; /* Dà contrasto su mobile */
-                border-radius: 12px;
-                box-shadow: var(--shadow-3d);
+                /* Snap magnetico per le colonne */
+                scroll-snap-type: x mandatory;
+                background: rgba(255,255,255,0.4);
+                border-radius: 10px;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch; /* Smooth scroll iOS */
             }
 
             .journey-grid {
-                /* Assicura che la larghezza sia sufficiente per tutte le 5 colonne */
-                display: flex; /* Flex è meglio di Grid per lo scroll orizzontale puro */
-                width: auto;
+                /* Layout orizzontale forzato */
+                display: flex;
+                width: max-content; /* La larghezza si adatta al contenuto */
                 gap: 15px;
-                padding: 15px;
+                padding: 10px;
+                padding-bottom: 40px;
             }
 
             .journey-grid > div {
-                min-width: 200px; /* Larghezza minima colonna su mobile */
-                width: 200px;
-                scroll-snap-align: start; /* Allinea a sinistra allo stop */
+                min-width: 260px; /* Larghezza minima colonna su mobile per non schiacciare i post-it */
+                width: 260px;
+                scroll-snap-align: start; /* Allineamento allo scroll */
             }
 
-            /* Aggiustamento Frecce su mobile */
+            /* Nascondiamo le frecce lunghe su mobile per pulizia */
             .journey-grid > div:not(:last-child) .column-header::after,
             .journey-grid > div:not(:last-child) .column-header::before {
-                /* Nascondiamo le frecce se danno fastidio, o le accorciamo. 
-                   Qui le accorciamo leggermente */
-                right: -20px; 
-                width: 20px;
+                display: none;
             }
-            .journey-grid > div:not(:last-child) .column-header::before {
-                right: -25px;
+            
+            /* Aggiunge piccola freccia CSS semplice */
+            .journey-grid > div:not(:last-child) .column-header {
+                border-right: 5px solid rgba(0,0,0,0.05);
             }
 
-            .swipe-hint {
-                display: block; /* Mostra l'indicazione di swipe su mobile */
-            }
+            .mobile-hint { display: block; }
         }
+
     </style>
 </head>
 <body>
@@ -295,61 +262,90 @@
         
         <div class="hero-card">
             <h1>Customer Journey</h1>
-            <p><strong>Scopo:</strong> Analisi punti di frizione.</p>
+            <p><strong>Scopo:</strong> Capire cosa c’è e dove “stona” con il mondo di oggi.</p>
         </div>
 
         <div class="instruction-card">
+            
             <div class="step-block">
                 <div class="step-header">
                     <span class="step-title">1. Analisi</span>
+                    <span class="timer-badge">⏱ Leggi e valuta</span>
+                </div>
+                <p style="font-size:0.9rem;">Leggete la journey precompilata (grigia) ed evidenziate con un pennarello/spillo:</p>
+                
+                <div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee;">
+                    <div class="pin-legend-item">
+                        <div class="pin-preview-box">
+                            <div class="pin-container pin-blue" style="top:5px; transform: translateX(-50%);">
+                                <div class="pin-needle"></div><div class="pin-head"></div>
+                            </div>
+                        </div>
+                        <span style="font-size:0.9rem;"><strong>Punti chiari</strong> e ancora validi</span>
+                    </div>
+                    
+                    <div class="pin-legend-item">
+                        <div class="pin-preview-box">
+                            <div class="pin-container pin-red" style="top:5px; transform: translateX(-50%);">
+                                <div class="pin-needle"></div><div class="pin-head"></div>
+                            </div>
+                        </div>
+                        <span style="font-size:0.9rem;"><strong>Punti dubbi</strong> / superati</span>
+                    </div>
+
+                    <div class="pin-legend-item">
+                        <div class="pin-preview-box">
+                            <div class="pin-container pin-yellow" style="top:5px; transform: translateX(-50%);">
+                                <div class="pin-needle"></div><div class="pin-head"></div>
+                            </div>
+                        </div>
+                        <span style="font-size:0.9rem;"><strong>Manca qualcosa</strong> / non esplicito</span>
+                    </div>
                 </div>
                 
-                <div style="padding: 10px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee;">
-                    <div class="pin-legend-item">
-                        <div class="pin-preview-box">
-                            <div class="pin-container pin-blue" style="top:5px; transform: translateX(-50%); scale: 0.8;">
-                                <div class="pin-needle"></div><div class="pin-head"></div>
-                            </div>
-                        </div>
-                        <span style="font-size:0.8rem;">Funziona</span>
-                    </div>
-                    <div class="pin-legend-item">
-                        <div class="pin-preview-box">
-                            <div class="pin-container pin-red" style="top:5px; transform: translateX(-50%); scale: 0.8;">
-                                <div class="pin-needle"></div><div class="pin-head"></div>
-                            </div>
-                        </div>
-                        <span style="font-size:0.8rem;">Problema</span>
-                    </div>
-                    <div class="pin-legend-item">
-                        <div class="pin-preview-box">
-                            <div class="pin-container pin-yellow" style="top:5px; transform: translateX(-50%); scale: 0.8;">
-                                <div class="pin-needle"></div><div class="pin-head"></div>
-                            </div>
-                        </div>
-                        <span style="font-size:0.8rem;">Mancante</span>
-                    </div>
-                </div>
+                <p style="margin-top:15px; font-weight:600; font-size:0.9rem;">Output: 3–5 note per gruppo su cosa funziona/non funziona.</p>
             </div>
 
             <div class="step-block">
                 <div class="step-header">
-                    <span class="step-title">2. Riempimento</span>
+                    <span class="step-title">2. Riempimento guidato</span>
+                    <span class="timer-badge">⏱ 15-35'</span>
                 </div>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Scopo: completare la journey senza “saltare” a soluzioni. Lavorate su 3 layer.</p>
+
                 <div class="layer-box layer-a">
-                    <div class="layer-title">A. Emozioni <span class="timer-badge">😊 😰</span></div>
+                    <div class="layer-title">Layer A — Emozioni <span class="timer-badge">7'</span></div>
+                    <div style="font-size: 0.85rem; margin-bottom:5px;">Per ogni fase, scrivete 1 emozione dominante:</div>
+                    <div style="letter-spacing: 3px;">😊 😰 😤 😍 😕</div>
                 </div>
+
                 <div class="layer-box layer-b">
-                    <div class="layer-title">B. Pain Points <span class="timer-badge">⚠</span></div>
+                    <div class="layer-title">Layer B — Pain points <span class="timer-badge">7'</span></div>
+                    <div style="font-size: 0.85rem; margin-bottom:5px;">Per ogni fase, 1 frizione reale (non interna):</div>
+                    <ul class="instruction-list" style="font-size: 0.8rem;">
+                        <li>“troppe opzioni, poca chiarezza”</li>
+                        <li>“tempi di risposta”</li>
+                        <li>“paura di ‘sbagliare’ scelta”</li>
+                        <li>“mancanza di trasparenza su costi”</li>
+                    </ul>
                 </div>
+
+                <div class="layer-box layer-c">
+                    <div class="layer-title">Layer C — Momenti mancanti <span class="timer-badge">6'</span></div>
+                    <div style="font-size: 0.85rem; margin-bottom:5px;">Qui cerchi “buchi” nel servizio (prima / durante / dopo).</div>
+                    <ul class="instruction-list" style="font-size: 0.8rem;">
+                        <li><strong>Regola:</strong> descrivere momento, non soluzione.</li>
+                        <li><em>Esempio: “momento in cui il cliente confronta 10 idee e si blocca”.</em></li>
+                    </ul>
+                </div>
+
             </div>
 
         </div>
     </div>
 
     <div class="map-container">
-        
-        <div class="swipe-hint">👉 Scorri orizzontalmente per vedere tutto il viaggio 👉</div>
+        <div class="mobile-hint">👉 Scorri orizzontalmente per vedere tutto il viaggio 👉</div>
 
         <div class="journey-grid">
             
@@ -358,17 +354,22 @@
                 
                 <div class="sticky s-gray locked">
                     <div class="pin-container pin-blue">
-                        <div class="pin-needle"></div><div class="pin-head"></div><div class="pin-hole-shadow"></div>
+                        <div class="pin-needle"></div>
+                        <div class="pin-head"></div>
+                        <div class="pin-hole-shadow"></div>
                     </div>
                     sogna /<br>cerca idee
                 </div>
                 <div class="sticky s-gray locked">brochure</div>
 
                 <div class="row-label">Emozioni</div>
-                <div class="sticky s-yellow"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-yellow"><span class="placeholder">[Vuoto]</span></div>
                 
                 <div class="row-label">Pain Points</div>
-                <div class="sticky s-orange"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-orange"><span class="placeholder">[Vuoto]</span></div>
+
+                <div class="row-label">Momenti Invisibili</div>
+                <div class="sticky s-blue"><span class="placeholder">[Vuoto]</span></div>
             </div>
 
             <div>
@@ -377,16 +378,21 @@
                 <div class="sticky s-gray locked">chiama /<br>scrive</div>
                 <div class="sticky s-gray locked">
                     <div class="pin-container pin-red">
-                        <div class="pin-needle"></div><div class="pin-head"></div><div class="pin-hole-shadow"></div>
+                        <div class="pin-needle"></div>
+                        <div class="pin-head"></div>
+                        <div class="pin-hole-shadow"></div>
                     </div>
                     telefono /<br>email
                 </div>
 
                 <div class="row-label">Emozioni</div>
-                <div class="sticky s-yellow"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-yellow"><span class="placeholder">[Vuoto]</span></div>
                 
                 <div class="row-label">Pain Points</div>
-                <div class="sticky s-orange"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-orange"><span class="placeholder">[Vuoto]</span></div>
+
+                <div class="row-label">Momenti Invisibili</div>
+                <div class="sticky s-blue"><span class="placeholder">[Vuoto]</span></div>
             </div>
 
             <div>
@@ -396,10 +402,13 @@
                 <div class="sticky s-gray locked">PDF /<br>incontri</div>
 
                 <div class="row-label">Emozioni</div>
-                <div class="sticky s-yellow"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-yellow"><span class="placeholder">[Vuoto]</span></div>
                 
                 <div class="row-label">Pain Points</div>
-                <div class="sticky s-orange"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-orange"><span class="placeholder">[Vuoto]</span></div>
+
+                <div class="row-label">Momenti Invisibili</div>
+                <div class="sticky s-blue"><span class="placeholder">[Vuoto]</span></div>
             </div>
 
             <div>
@@ -408,16 +417,21 @@
                 <div class="sticky s-gray locked">parte /<br>vive</div>
                 <div class="sticky s-gray locked">
                     <div class="pin-container pin-yellow">
-                        <div class="pin-needle"></div><div class="pin-head"></div><div class="pin-hole-shadow"></div>
+                        <div class="pin-needle"></div>
+                        <div class="pin-head"></div>
+                        <div class="pin-hole-shadow"></div>
                     </div>
                     partner /<br>emergenze
                 </div>
 
                 <div class="row-label">Emozioni</div>
-                <div class="sticky s-yellow"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-yellow"><span class="placeholder">[Vuoto]</span></div>
                 
                 <div class="row-label">Pain Points</div>
-                <div class="sticky s-orange"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-orange"><span class="placeholder">[Vuoto]</span></div>
+
+                <div class="row-label">Momenti Invisibili</div>
+                <div class="sticky s-blue"><span class="placeholder">[Vuoto]</span></div>
             </div>
 
             <div>
@@ -427,10 +441,13 @@
                 <div class="sticky s-gray locked">—</div>
 
                 <div class="row-label">Emozioni</div>
-                <div class="sticky s-yellow"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-yellow"><span class="placeholder">[Vuoto]</span></div>
                 
                 <div class="row-label">Pain Points</div>
-                <div class="sticky s-orange"><span class="placeholder">[..]</span></div>
+                <div class="sticky s-orange"><span class="placeholder">[Vuoto]</span></div>
+
+                <div class="row-label">Momenti Invisibili</div>
+                <div class="sticky s-blue"><span class="placeholder">[Vuoto]</span></div>
             </div>
 
         </div>
